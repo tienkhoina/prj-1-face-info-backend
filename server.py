@@ -24,6 +24,10 @@ def login():
 @app.route('/api/update-face', methods=['POST'])
 def update_face():
     return updateFace()
+import os
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=2902)
+    # Lấy cổng từ biến môi trường, mặc định là 5000 nếu không có
+    port = int(os.getenv('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
+
