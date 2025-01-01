@@ -2,7 +2,7 @@ torch
 facenet-pytorch
 numpy
 Pillow
-Flask==2.2.2
-Flask-Cors==3.1.1
-SQLAlchemy==2.0.0
-mysql-connector-python==8.0.28
+Flask
+Flask-Cors
+SQLAlchemy
+mysql-connector-python
