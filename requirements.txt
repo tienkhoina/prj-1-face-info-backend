@@ -7,3 +7,4 @@ Flask-Cors
 SQLAlchemy
 mysql-connector-python
 hupper
+redis

@@ -11,22 +11,17 @@ def get_session():
 
 # Hàm handleLogin
 def handleLogin(image_path):
-    session = get_session()
+    session = get_session()  # Lấy session
     try:
-        # Lấy danh sách userId có faceCode gần giống với ảnh đầu vào
-        face_embedding = get_face_embedding(image_path)  # Trích xuất embedding cho ảnh đầu vào
+        # Lấy toàn bộ bản ghi từ bảng FaceInfo
         all_face_info = session.query(FaceInfo).all()
-
         for face_info in all_face_info:
-            decoded_face_code = decode_embedding(face_info.faceCode)
-            distance = get_distance_embedding(face_embedding, decoded_face_code)
-            
-            if distance >= 0.8:  # Nếu khoảng cách nhỏ hơn 0.8, thì xác nhận người dùng
+            if get_distance_embedding(get_face_embedding(image_path),decode_embedding(face_info.faceCode))>=0.8:
                 return face_info.userId
-        
-        return -1  # Trả về -1 nếu không tìm thấy khớp
+        return -1                
 
     except Exception as e:
         return f"Error: {e}"
     finally:
+        # Đóng session
         session.close()
