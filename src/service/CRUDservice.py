@@ -12,17 +12,13 @@ def get_session():
 def check_exists_userId(userId):
     session = get_session()
     try:
-        
-        face_info = session.query(FaceInfo).filter(FaceInfo.userId == userId).first()
-
-        if not face_info:
-            return False
-        return True
+        exists_query = session.query(exists().where(FaceInfo.userId == userId)).scalar()
+        return exists_query
     except Exception as e:
         session.rollback()
         return f"Error: {e}"
     finally:
-        session.close() 
+        session.close()
 
 def insertFacecode(image_path, userId):
     """
