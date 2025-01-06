@@ -1,7 +1,10 @@
+torch
+facenet-pytorch
 numpy
+Pillow
 Flask
 Flask-Cors
 SQLAlchemy
 mysql-connector-python
-dlib
-opencv-python
+hupper
+redis
